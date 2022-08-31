@@ -34,11 +34,11 @@ public class ContactHelper  extends HelperBase{
         click(By.xpath("//div[@id='content']/form/input[22]"));
     }
 
-    public void selectFirstContact() {
-        click(By.id("1"));
+    public void selectContact() {
+        click(By.name("selected[]"));
     }
 
-    public void initContactDeletion() {
+    public void deleteSelectedContacts() {
         click(By.xpath("//input[@value='Delete']"));
         wd.switchTo().alert().accept();
     }
