@@ -29,7 +29,7 @@ public class ApplicationManager {
         } else if (browser.equals(BrowserType.IE)) {
             wd = new InternetExplorerDriver();
         }
-        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
         js = (JavascriptExecutor) wd;
         wd.get("http://localhost:8080/addressbook/group.php");
         groupHelper = new GroupHelper(wd);
