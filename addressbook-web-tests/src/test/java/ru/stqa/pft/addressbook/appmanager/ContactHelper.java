@@ -18,11 +18,11 @@ public class ContactHelper  extends HelperBase{
     }
 
     public void fillContactForm(ContactData contactData) {
-        type(By.name("firstname"),contactData.firstname());
-        type(By.name("lastname"),contactData.lastname());
-        type(By.name("address"),contactData.address());
-        type(By.name("email"),contactData.email());
-        type(By.name("home"),contactData.phone());
+        type(By.name("firstname"),contactData.getFirstname());
+        type(By.name("lastname"),contactData.getLastname());
+        type(By.name("address"),contactData.getAddress());
+        type(By.name("email"),contactData.getEmail());
+        type(By.name("home"),contactData.getPhone());
     }
 
     public void initContactCreation() {
@@ -66,8 +66,9 @@ public class ContactHelper  extends HelperBase{
         List<ContactData> contacts = new ArrayList<ContactData>();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {
-            String name = element.getText();
-            ContactData contact = new ContactData(name,null,null, null,null);
+            List<WebElement> rows = element.findElements(By.tagName("td"));
+            String id = element.findElement(By.tagName("input")).getAttribute("id");
+            ContactData contact = new ContactData(id, rows.get(2).getText(), rows.get(1).getText(),null, null,null);
             contacts.add(contact);
         }
         return contacts;
