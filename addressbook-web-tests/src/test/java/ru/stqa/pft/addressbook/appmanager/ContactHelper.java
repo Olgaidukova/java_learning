@@ -30,8 +30,8 @@ public class ContactHelper  extends HelperBase{
       wd.get("http://localhost:8080/addressbook/edit.php");
     }
 
-    public void initContactModification() {
-        click(By.xpath("//img[@alt='Edit']"));
+    public void initContactModification(int index) {
+        wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
     }
 
     public void submitContactModification() {
