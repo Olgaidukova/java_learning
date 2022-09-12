@@ -13,14 +13,16 @@ public class ContactModificationTest extends TestBase{
     public void ensurePreconditions() {
         app.goTo().contactPage();
         if (app.contact().list().size() == 0) {
-            app.contact().create(new ContactData("Test", null, null, null, null));
+            app.contact().create(new ContactData().withFirstname("Test"));
         }
     }
     @Test
     public void testContactModification() {
         List<ContactData> before = app.contact().list();
         int index = before.size() - 1;
-        ContactData contact = new ContactData(before.get(index).getId(), "Test1", "Testov1", "SPB1", "test1@test.com", "1234561");
+        ContactData contact = new ContactData()
+                .withId(before.get(index).getId()).withFirstname("Test1").withLastname("Testov1")
+                .withAddress("SPB1").withEmail("test1@test.com").withPhone("1234561");
         app.goTo().contactPage();
         app.contact().modify(index, contact);
         app.goTo().homePage();

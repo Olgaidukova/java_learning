@@ -3,12 +3,12 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-    private int id;
-    private final String firstname;
-    private final String lastname;
-    private final String address;
-    private final String email;
-    private final String phone;
+    private int id = Integer.MAX_VALUE;
+    private String firstname;
+    private String lastname;
+    private String address;
+    private String email;
+    private String phone;
 
 
     public int getId() {
@@ -16,28 +16,35 @@ public class ContactData {
     }
 
 
-
-    public ContactData(String firstname, String lastname, String address, String email, String phone) {
-        this.id = Integer.MAX_VALUE;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.address = address;
-        this.email = email;
-        this.phone = phone;
-    }
-
-    public ContactData(int id, String firstname, String lastname, String address, String email, String phone) {
+    public ContactData withId(int id) {
         this.id = id;
+        return this;
+    }
+    public ContactData withFirstname(String firstname) {
         this.firstname = firstname;
-        this.lastname = lastname;
-        this.address = address;
-        this.email = email;
-        this.phone = phone;
+        return this;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public ContactData withLastname(String lastname) {
+        this.lastname = lastname;
+        return this;
     }
+
+    public ContactData withAddress(String address) {
+        this.address = address;
+        return this;
+    }
+
+    public ContactData withEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public ContactData withPhone(String phone) {
+        this.phone = phone;
+        return this;
+    }
+
 
     @Override
     public String toString() {
