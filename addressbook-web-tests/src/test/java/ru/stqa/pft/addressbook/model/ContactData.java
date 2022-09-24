@@ -13,15 +13,16 @@ public class ContactData {
     private String work;
     private String mobile;
     private String allPhones;
+    private String email1;
+    private String email2;
+    private String email3;
+    private String allEmail;
 
     public String getAllPhones() {
         return allPhones;
     }
 
-    public ContactData withAllPhones(String allPhones) {
-        this.allPhones = allPhones;
-        return this;
-    }
+
 
 
 
@@ -73,6 +74,27 @@ public class ContactData {
         this.work = work;
         return this;
     }
+    public ContactData withEmail1(String email1) {
+        this.email1 = email1;
+        return this;
+    }
+    public ContactData withEmail2(String email2) {
+        this.email2 = email2;
+        return this;
+    }
+    public ContactData withEmail3(String email3) {
+        this.email3 = email3;
+        return this;
+    }
+    public ContactData withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return this;
+    }
+
+    public ContactData withAllEmail(String allEmail) {
+        this.allEmail = allEmail;
+        return this;
+    }
 
 
 
@@ -115,6 +137,20 @@ public class ContactData {
         return work;
     }
 
+    public String getEmail1() {
+        return email1;
+    }
+
+    public String getEmail2() {
+        return email2;
+    }
+    public String getEmail3() {
+        return email3;
+    }
+    public String getAllEmail() {
+        return allEmail;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -134,4 +170,7 @@ public class ContactData {
         result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
         return result;
     }
+
+
+
 }
