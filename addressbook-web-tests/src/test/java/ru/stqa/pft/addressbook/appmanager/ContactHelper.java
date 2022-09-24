@@ -43,7 +43,7 @@ public class ContactHelper  extends HelperBase{
         wd.navigate().back();
 
         return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname)
-                .withHome(home).withMobile(mobile).withWork(work);
+                .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
     }
 
     public void submitContactModification() {
@@ -95,18 +95,18 @@ public class ContactHelper  extends HelperBase{
 
     private Contacts contactCache = null;
     public Contacts all() {
-        if (contactCache != null) {
-            return new Contacts(contactCache);
-        }
-        contactCache = new Contacts();
+        Contacts contacts = new Contacts();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {
-            List<WebElement> rows = element.findElements(By.tagName("td"));
-            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-            contactCache.add(new ContactData().withId(id)
-                    .withFirstname(rows.get(2).getText()).withLastname(rows.get(1).getText()));
+            List<WebElement> cells = element.findElements(By.tagName("td"));
+            String firstname = cells.get(2).getText();
+            String lastname = cells.get(1).getText();
+            String[] phones = cells.get(5).getText().split("\n");
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+            contacts.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname)
+                    .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]));
         }
-        return new Contacts(contactCache);
+        return contacts;
     }
 
 
