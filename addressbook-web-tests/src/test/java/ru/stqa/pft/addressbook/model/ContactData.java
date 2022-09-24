@@ -9,6 +9,9 @@ public class ContactData {
     private String address;
     private String email;
     private String phone;
+    private String home;
+    private String work;
+    private String mobile;
 
 
     public int getId() {
@@ -45,6 +48,22 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withHome(String home) {
+        this.home = home;
+        return this;
+    }
+
+    public ContactData withMobile(String mobile) {
+        this.mobile = mobile;
+        return this;
+    }
+
+    public ContactData withWork(String work) {
+        this.work = work;
+        return this;
+    }
+
+
 
     @Override
     public String toString() {
@@ -73,6 +92,16 @@ public class ContactData {
 
     public String getPhone() {
         return phone;
+    }
+    public String getMobile() {
+        return mobile;
+    }
+    public String getHome() {
+        return home;
+    }
+
+    public String getWork() {
+        return work;
     }
 
     @Override
