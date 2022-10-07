@@ -4,8 +4,9 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    implementation 'org.testng:testng:7.6.1'
+    implementation 'org.testng:testng:6.9.10'
     implementation 'org.seleniumhq.selenium:selenium-java:4.4.0'
     implementation 'org.hamcrest:java-hamcrest:2.0.0.0'
     implementation 'com.beust:jcommander:1.82'
+    implementation 'com.thoughtworks.xstream:xstream:1.4.19'
 }
