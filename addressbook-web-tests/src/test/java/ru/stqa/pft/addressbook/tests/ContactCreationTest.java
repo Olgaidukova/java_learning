@@ -58,7 +58,7 @@ public class ContactCreationTest extends TestBase{
   }
 
   @Test(dataProvider = "validContactsFromJson")
-  public void testContactCreation(ContactData contact) {
+  public void testContactCreation(ContactData contact) throws IOException {
     app.goTo().contactPage();
     Contacts before = app.contact().all();
     app.contact().create(contact);

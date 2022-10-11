@@ -6,11 +6,18 @@ import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
+import java.util.Properties;
 
 public class ContactHelper  extends HelperBase{
+    private final Properties properties;
     public ContactHelper(WebDriver wd) {
         super(wd);
+        properties = new Properties();
     }
 
     public void submitContactForm() {
@@ -29,9 +36,11 @@ public class ContactHelper  extends HelperBase{
 
     }
 
-    public void initContactCreation() {
+    public void initContactCreation() throws IOException {
+        String target = System.getProperty("target", "local");
+        properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties",target))));
         click(By.linkText("add new"));
-      wd.get("http://localhost:8080/addressbook/edit.php");
+        wd.get(properties.getProperty("web.editUrl"));
     }
 
     public void initContactModificationById(int id) {
@@ -71,7 +80,7 @@ public class ContactHelper  extends HelperBase{
         wd.switchTo().alert().accept();
     }
 
-    public void create(ContactData contact) {
+    public void create(ContactData contact) throws IOException {
         initContactCreation();
         fillContactForm(contact);
         submitContactForm();
