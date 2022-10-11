@@ -113,7 +113,10 @@ public class ContactHelper  extends HelperBase{
 
     private Contacts contactCache = null;
     public Contacts all() {
-        Contacts contacts = new Contacts();
+        if (contactCache != null) {
+            return new Contacts();
+        }
+        contactCache = new Contacts();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {
             List<WebElement> cells = element.findElements(By.tagName("td"));
@@ -123,10 +126,10 @@ public class ContactHelper  extends HelperBase{
             String address = cells.get(3).getText();
             String allEmail = cells.get(4).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            contacts.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname)
+            contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname)
                     .withAllPhones(allPhones).withAddress(address).withAllEmail(allEmail));
         }
-        return contacts;
+        return contactCache;
     }
 
 

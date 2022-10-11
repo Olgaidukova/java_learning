@@ -43,6 +43,7 @@ public class ContactData {
     @Column(name = "mobile")
     @Type(type = "text")
     private String mobile;
+    @Expose
     @Transient
     private String allPhones;
     @Transient
@@ -54,6 +55,7 @@ public class ContactData {
     @Transient
     @Type(type = "text")
     private String email3;
+    @Expose
     @Transient
     private String allEmail;
     @Column(name = "photo")
@@ -61,7 +63,10 @@ public class ContactData {
     private String photo;
 
     public File getPhoto() {
-        return new File(photo);
+        if (photo != null) {
+            return new File(photo);
+        }
+        return new File("src/test/resources/help.jpg");
     }
 
     public ContactData withPhoto(File photo) {
